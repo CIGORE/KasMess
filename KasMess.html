@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KasMess - Aplikasi Pengelolaan Kas Mess/Asrama</title>
+    <title>KasMess - Aplikasi Pengelolaan Kas</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
@@ -137,7 +137,9 @@
         <!-- Header -->
         <header class="flex justify-between items-center mb-6">
             <div class="flex items-center">
-                <img id="app-logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0OCIgaGVpZ2h0PSI0OCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9IiM1RDVDREUiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIj48cmVjdCB4PSIyIiB5PSI0IiB3aWR0aD0iMjAiIGhlaWdodD0iMTYiIHJ4PSIyIj48L3JlY3Q+PHBhdGggZD0iTTYgOGg4TTggMTJoOE02IDE2aDgibGluZT0iaW5oZXJpdCIgc3Ryb2tlPSJpbmhlcml0Ij48L3BhdGg+PHBhdGggZD0iTTE2IDh2OE0xNiA4aDIiIGxpbmU9ImluaGVyaXQiIHN0cm9rZT0iaW5oZXJpdCI+PC9wYXRoPjwvc3ZnPg==" alt="KasMess Logo" class="h-10 w-10 mr-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 mr-2 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z" />
+                </svg>
                 <h1 class="text-2xl font-bold text-gray-800 dark:text-white">KasMess</h1>
             </div>
             <div class="flex items-center">
@@ -418,9 +420,9 @@
                                     <button id="export-transactions" class="flex items-center py-2 px-4 rounded-lg bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600 transition-colors admin-only">
                                         <i class="ri-download-line mr-2"></i> Export
                                     </button>
-                                    <button id="add-transaction-btn" class="flex items-center py-2 px-4 rounded-lg bg-primary text-white hover:bg-primaryDark transition-colors admin-only">
+                                    <!-- <button id="add-transaction-btn" class="flex items-center py-2 px-4 rounded-lg bg-primary text-white hover:bg-primaryDark transition-colors admin-only">
                                         <i class="ri-add-line mr-2"></i> Tambah Transaksi
-                                    </button>
+                                    </button> -->
                                 </div>
                             </div>
                             <div class="overflow-x-auto">
@@ -459,6 +461,7 @@
                         <h2 class="text-xl font-semibold mb-4 text-gray-800 dark:text-white">Tambah Transaksi</h2>
                         <div class="bg-white dark:bg-darkCard rounded-lg shadow p-4">
                             <form id="transaction-form">
+                                <input type="hidden" id="transaction-id" value="">
                                 <div class="mb-4">
                                     <label for="transaction-type" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Jenis Transaksi</label>
                                     <div class="flex space-x-2">
@@ -531,7 +534,7 @@
                                         Reset
                                     </button>
                                     <button type="submit" class="py-2 px-4 rounded-lg bg-primary text-white hover:bg-primaryDark transition-colors">
-                                        Simpan Transaksi
+                                        <span id="transaction-submit-text">Tambah Transaksi</span>
                                     </button>
                                 </div>
                             </form>
@@ -606,9 +609,9 @@
                                         <i class="ri-search-line text-lg"></i>
                                     </div>
                                 </div>
-                                <button id="add-resident-btn" class="flex items-center py-2 px-4 rounded-lg bg-primary text-white hover:bg-primaryDark transition-colors">
+                                <!-- <button id="add-resident-btn" class="flex items-center py-2 px-4 rounded-lg bg-primary text-white hover:bg-primaryDark transition-colors">
                                     <i class="ri-user-add-line mr-2"></i> Tambah Penghuni
-                                </button>
+                                </button> -->
                             </div>
                             <div class="overflow-x-auto">
                                 <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
@@ -666,7 +669,7 @@
                                         Reset
                                     </button>
                                     <button type="submit" class="py-2 px-4 rounded-lg bg-primary text-white hover:bg-primaryDark transition-colors">
-                                        Simpan Penghuni
+                                        <span id="resident-submit-text">Tambah Penghuni</span>
                                     </button>
                                 </div>
                             </form>
@@ -927,27 +930,7 @@
                             <div class="mb-4">
                                 <h4 class="text-md font-medium mb-2 text-gray-700 dark:text-gray-300">Kategori Pemasukan</h4>
                                 <div id="income-category-list" class="space-y-2 mb-2">
-                                    <div class="flex items-center justify-between bg-gray-50 dark:bg-gray-800 p-2 rounded-lg">
-                                        <span class="text-gray-700 dark:text-gray-300">Iuran Penghuni</span>
-                                        <div class="flex items-center space-x-1">
-                                            <button class="p-1 text-gray-500 hover:text-primary dark:text-gray-400 dark:hover:text-primary"><i class="ri-edit-line"></i></button>
-                                            <button class="p-1 text-gray-500 hover:text-red-500 dark:text-gray-400 dark:hover:text-red-400"><i class="ri-delete-bin-line"></i></button>
-                                        </div>
-                                    </div>
-                                    <div class="flex items-center justify-between bg-gray-50 dark:bg-gray-800 p-2 rounded-lg">
-                                        <span class="text-gray-700 dark:text-gray-300">Sumbangan</span>
-                                        <div class="flex items-center space-x-1">
-                                            <button class="p-1 text-gray-500 hover:text-primary dark:text-gray-400 dark:hover:text-primary"><i class="ri-edit-line"></i></button>
-                                            <button class="p-1 text-gray-500 hover:text-red-500 dark:text-gray-400 dark:hover:text-red-400"><i class="ri-delete-bin-line"></i></button>
-                                        </div>
-                                    </div>
-                                    <div class="flex items-center justify-between bg-gray-50 dark:bg-gray-800 p-2 rounded-lg">
-                                        <span class="text-gray-700 dark:text-gray-300">Lainnya</span>
-                                        <div class="flex items-center space-x-1">
-                                            <button class="p-1 text-gray-500 hover:text-primary dark:text-gray-400 dark:hover:text-primary"><i class="ri-edit-line"></i></button>
-                                            <button class="p-1 text-gray-500 hover:text-red-500 dark:text-gray-400 dark:hover:text-red-400"><i class="ri-delete-bin-line"></i></button>
-                                        </div>
-                                    </div>
+                                    <!-- Income categories will be dynamically added here -->
                                 </div>
                                 <div class="flex">
                                     <input type="text" id="new-income-category" class="flex-1 rounded-l-lg border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary text-base" placeholder="Kategori baru...">
@@ -959,21 +942,7 @@
                             <div>
                                 <h4 class="text-md font-medium mb-2 text-gray-700 dark:text-gray-300">Kategori Pengeluaran</h4>
                                 <div id="expense-category-list" class="space-y-2 mb-2">
-                                    <div class="flex items-center justify-between bg-gray-50 dark:bg-gray-800 p-2 rounded-lg">
-                                        <span class="text-gray-700 dark:text-gray-300">Makanan</span>
-                                        <div class="flex items-center space-x-1">
-                                            <button class="p-1 text-gray-500 hover:text-primary dark:text-gray-400 dark:hover:text-primary"><i class="ri-edit-line"></i></button>
-                                            <button class="p-1 text-gray-500 hover:text-red-500 dark:text-gray-400 dark:hover:text-red-400"><i class="ri-delete-bin-line"></i></button>
-                                        </div>
-                                    </div>
-                                    <div class="flex items-center justify-between bg-gray-50 dark:bg-gray-800 p-2 rounded-lg">
-                                        <span class="text-gray-700 dark:text-gray-300">Listrik</span>
-                                        <div class="flex items-center space-x-1">
-                                            <button class="p-1 text-gray-500 hover:text-primary dark:text-gray-400 dark:hover:text-primary"><i class="ri-edit-line"></i></button>
-                                            <button class="p-1 text-gray-500 hover:text-red-500 dark:text-gray-400 dark:hover:text-red-400"><i class="ri-delete-bin-line"></i></button>
-                                        </div>
-                                    </div>
-                                    <!-- More expense categories would be listed here -->
+                                    <!-- Expense categories will be dynamically added here -->
                                 </div>
                                 <div class="flex">
                                     <input type="text" id="new-expense-category" class="flex-1 rounded-l-lg border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary text-base" placeholder="Kategori baru...">
@@ -1217,6 +1186,61 @@
             </div>
         </div>
         
+        <!-- Edit Category Modal -->
+        <div id="edit-category-modal" class="fixed inset-0 flex items-center justify-center z-30 hidden">
+            <div class="bg-white dark:bg-darkCard rounded-lg shadow-lg max-w-md w-full mx-4 fade-in slide-up">
+                <div class="flex justify-between items-center p-4 border-b border-gray-200 dark:border-gray-700">
+                    <h3 class="text-lg font-semibold text-gray-800 dark:text-white">Edit Kategori</h3>
+                    <button class="close-modal text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300">
+                        <i class="ri-close-line text-xl"></i>
+                    </button>
+                </div>
+                <div class="p-4">
+                    <form id="edit-category-form">
+                        <input type="hidden" id="edit-category-type" value="">
+                        <input type="hidden" id="edit-category-index" value="">
+                        <div class="mb-4">
+                            <label for="edit-category-name" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Nama Kategori</label>
+                            <input type="text" id="edit-category-name" class="w-full rounded-lg border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary text-base" required>
+                        </div>
+                        <div class="flex justify-end space-x-2 mt-4">
+                            <button type="button" class="close-modal py-2 px-4 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-700 dark:text-white hover:bg-gray-50 dark:hover:bg-gray-600 transition-colors">
+                                Batal
+                            </button>
+                            <button type="submit" class="py-2 px-4 rounded-lg bg-primary text-white hover:bg-primaryDark transition-colors">
+                                Simpan Perubahan
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Confirm Delete Modal -->
+        <div id="confirm-delete-modal" class="fixed inset-0 flex items-center justify-center z-30 hidden">
+            <div class="bg-white dark:bg-darkCard rounded-lg shadow-lg max-w-md w-full mx-4 fade-in slide-up">
+                <div class="flex justify-between items-center p-4 border-b border-gray-200 dark:border-gray-700">
+                    <h3 class="text-lg font-semibold text-gray-800 dark:text-white">Konfirmasi Hapus</h3>
+                    <button class="close-modal text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300">
+                        <i class="ri-close-line text-xl"></i>
+                    </button>
+                </div>
+                <div class="p-4">
+                    <p class="text-gray-700 dark:text-gray-300 mb-4" id="delete-message">Apakah Anda yakin ingin menghapus item ini?</p>
+                    <input type="hidden" id="delete-type" value="">
+                    <input type="hidden" id="delete-id" value="">
+                    <div class="flex justify-end space-x-2">
+                        <button type="button" class="close-modal py-2 px-4 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-700 dark:text-white hover:bg-gray-50 dark:hover:bg-gray-600 transition-colors">
+                            Batal
+                        </button>
+                        <button type="button" id="confirm-delete-btn" class="py-2 px-4 rounded-lg bg-red-500 text-white hover:bg-red-600 transition-colors">
+                            Hapus
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
         <!-- Toast Notification -->
         <div id="toast" class="fixed bottom-20 right-4 bg-white dark:bg-gray-800 rounded-lg shadow-lg p-4 max-w-xs w-full transform translate-y-10 opacity-0 transition-all hidden z-50">
             <div class="flex items-center">
@@ -1271,6 +1295,10 @@
                     timeframe: 'all', // 'all', 'today', 'month', 'year'
                     searchTerm: '',
                     type: 'all' // 'all', 'income', 'expense'
+                },
+                editMode: {
+                    transaction: false,
+                    resident: false
                 }
             };
             
@@ -1496,7 +1524,15 @@
                 roleIndicator: document.getElementById('role-indicator'),
                 roleName: document.getElementById('role-name'),
                 switchRoleBtn: document.getElementById('switch-role-btn'),
-                filterTabs: document.querySelectorAll('.filter-tab')
+                filterTabs: document.querySelectorAll('.filter-tab'),
+                editCategoryModal: document.getElementById('edit-category-modal'),
+                editCategoryForm: document.getElementById('edit-category-form'),
+                confirmDeleteModal: document.getElementById('confirm-delete-modal'),
+                confirmDeleteBtn: document.getElementById('confirm-delete-btn'),
+                addIncomeCategory: document.getElementById('add-income-category'),
+                addExpenseCategory: document.getElementById('add-expense-category'),
+                incomeCategoryList: document.getElementById('income-category-list'),
+                expenseCategoryList: document.getElementById('expense-category-list')
             };
 
             // Format currency
@@ -2131,10 +2167,10 @@
                         tdActions.className = 'px-4 py-3 whitespace-nowrap text-sm text-center';
                         tdActions.innerHTML = `
                             <div class="flex justify-center space-x-1">
-                                <button class="p-1 text-gray-500 hover:text-primary dark:text-gray-400 dark:hover:text-primary" data-id="${transaction.id}" data-action="edit-transaction">
+                                <button class="p-1 text-gray-500 hover:text-primary dark:text-gray-400 dark:hover:text-primary edit-transaction-btn" data-id="${transaction.id}">
                                     <i class="ri-edit-line"></i>
                                 </button>
-                                <button class="p-1 text-gray-500 hover:text-red-500 dark:text-gray-400 dark:hover:text-red-400" data-id="${transaction.id}" data-action="delete-transaction">
+                                <button class="p-1 text-gray-500 hover:text-red-500 dark:text-gray-400 dark:hover:text-red-400 delete-transaction-btn" data-id="${transaction.id}">
                                     <i class="ri-delete-bin-line"></i>
                                 </button>
                             </div>
@@ -2148,6 +2184,87 @@
                 // Update pagination info
                 document.getElementById('shown-transactions').textContent = '1-' + Math.min(sortedTransactions.length, 10);
                 document.getElementById('total-transactions').textContent = sortedTransactions.length;
+                
+                // Add event listeners for edit and delete buttons
+                document.querySelectorAll('.edit-transaction-btn').forEach(button => {
+                    button.addEventListener('click', function() {
+                        const transactionId = parseInt(this.dataset.id);
+                        editTransaction(transactionId);
+                    });
+                });
+                
+                document.querySelectorAll('.delete-transaction-btn').forEach(button => {
+                    button.addEventListener('click', function() {
+                        const transactionId = parseInt(this.dataset.id);
+                        showDeleteConfirmation('transaction', transactionId, 'transaksi');
+                    });
+                });
+            }
+
+            // Edit Transaction Function
+            function editTransaction(id) {
+                // Find transaction
+                const transaction = appData.transactions.find(t => t.id === id);
+                if (!transaction) return;
+                
+                // Set transaction form to edit mode
+                appState.editMode.transaction = true;
+                
+                // Fill form with transaction data
+                document.getElementById('transaction-id').value = transaction.id;
+                document.querySelector(`input[name="transaction-type"][value="${transaction.type}"]`).checked = true;
+                document.getElementById('transaction-date').value = transaction.date;
+                document.getElementById('transaction-amount').value = transaction.amount;
+                document.getElementById('transaction-description').value = transaction.description;
+                
+                // Update radio button UI
+                document.querySelectorAll('label input[name="transaction-type"] + div').forEach(div => {
+                    div.classList.add('border-transparent', 'bg-gray-100', 'dark:bg-gray-700', 'text-gray-700', 'dark:text-gray-300');
+                    div.classList.remove('border-green-500', 'border-red-500', 'bg-green-50', 'bg-red-50', 'dark:bg-green-900/20', 'dark:bg-red-900/20', 'text-green-700', 'text-red-700', 'dark:text-green-300', 'dark:text-red-300');
+                });
+                
+                if (transaction.type === 'income') {
+                    document.querySelector('input[name="transaction-type"][value="income"] + div').classList.add('border-green-500', 'bg-green-50', 'dark:bg-green-900/20', 'text-green-700', 'dark:text-green-300');
+                    document.querySelector('input[name="transaction-type"][value="income"] + div').classList.remove('border-transparent', 'bg-gray-100', 'dark:bg-gray-700', 'text-gray-700', 'dark:text-gray-300');
+                    
+                    // Enable income categories, disable expense categories
+                    const incomeCategories = document.getElementById('income-categories');
+                    const expenseCategories = document.getElementById('expense-categories');
+                    if (incomeCategories && expenseCategories) {
+                        incomeCategories.disabled = false;
+                        expenseCategories.disabled = true;
+                    }
+                } else {
+                    document.querySelector('input[name="transaction-type"][value="expense"] + div').classList.add('border-red-500', 'bg-red-50', 'dark:bg-red-900/20', 'text-red-700', 'dark:text-red-300');
+                    document.querySelector('input[name="transaction-type"][value="expense"] + div').classList.remove('border-transparent', 'bg-gray-100', 'dark:bg-gray-700', 'text-gray-700', 'dark:text-gray-300');
+                    
+                    // Enable expense categories, disable income categories
+                    const incomeCategories = document.getElementById('income-categories');
+                    const expenseCategories = document.getElementById('expense-categories');
+                    if (incomeCategories && expenseCategories) {
+                        incomeCategories.disabled = true;
+                        expenseCategories.disabled = false;
+                    }
+                }
+                
+                // Set the correct category
+                document.getElementById('transaction-category').value = transaction.category;
+                
+                // Check the related residents checkboxes
+                document.querySelectorAll('input[name="resident-checkbox"]').forEach(checkbox => {
+                    checkbox.checked = transaction.relatedResidents.includes(checkbox.value);
+                });
+                
+                // Change the submit button text
+                document.getElementById('transaction-submit-text').textContent = 'Simpan Perubahan';
+                
+                // Show the transaction section
+                if (!document.getElementById('transaction-form').classList.contains('active')) {
+                    document.querySelector('.tab-link[data-tab="transaksi"]').click();
+                }
+                
+                // Scroll to form
+                document.getElementById('transaction-form').scrollIntoView({ behavior: 'smooth' });
             }
 
             // Populate All Residents
@@ -2158,7 +2275,7 @@
                 residentsContainer.innerHTML = '';
                 
                 // Get search term if any
-                const searchTerm = document.getElementById('search-resident').value.toLowerCase();
+                const searchTerm = document.getElementById('search-resident')?.value.toLowerCase() || '';
                 
                 // Filter residents based on search term
                 let filteredResidents = appData.residents;
@@ -2225,10 +2342,10 @@
                     tdActions.className = 'px-4 py-3 whitespace-nowrap text-sm text-center';
                     tdActions.innerHTML = `
                         <div class="flex justify-center space-x-1">
-                            <button class="p-1 text-gray-500 hover:text-primary dark:text-gray-400 dark:hover:text-primary" data-id="${resident.id}" data-action="edit-resident">
+                            <button class="p-1 text-gray-500 hover:text-primary dark:text-gray-400 dark:hover:text-primary edit-resident-btn" data-id="${resident.id}">
                                 <i class="ri-edit-line"></i>
                             </button>
-                            <button class="p-1 text-gray-500 hover:text-red-500 dark:text-gray-400 dark:hover:text-red-400" data-id="${resident.id}" data-action="delete-resident">
+                            <button class="p-1 text-gray-500 hover:text-red-500 dark:text-gray-400 dark:hover:text-red-400 delete-resident-btn" data-id="${resident.id}">
                                 <i class="ri-delete-bin-line"></i>
                             </button>
                         </div>
@@ -2242,6 +2359,48 @@
                     
                     residentsContainer.appendChild(tr);
                 });
+                
+                // Add event listeners for edit and delete buttons
+                document.querySelectorAll('.edit-resident-btn').forEach(button => {
+                    button.addEventListener('click', function() {
+                        const residentId = this.dataset.id;
+                        editResident(residentId);
+                    });
+                });
+                
+                document.querySelectorAll('.delete-resident-btn').forEach(button => {
+                    button.addEventListener('click', function() {
+                        const residentId = this.dataset.id;
+                        showDeleteConfirmation('resident', residentId, 'penghuni');
+                    });
+                });
+            }
+
+            // Edit Resident Function
+            function editResident(id) {
+                // Find resident
+                const resident = appData.residents.find(r => r.id === id);
+                if (!resident) return;
+                
+                // Set resident form to edit mode
+                appState.editMode.resident = true;
+                
+                // Fill form with resident data
+                document.getElementById('resident-id').value = resident.id;
+                document.getElementById('resident-name').value = resident.name;
+                document.getElementById('resident-email').value = resident.email;
+                document.getElementById('resident-phone').value = resident.phone;
+                document.getElementById('resident-room').value = resident.room;
+                document.getElementById('resident-join-date').value = resident.joinDate;
+                document.getElementById('resident-dues').value = resident.dues;
+                document.getElementById('resident-notes').value = resident.notes || '';
+                
+                // Change the form title and submit button text
+                document.getElementById('resident-form-title').textContent = 'Edit Penghuni';
+                document.getElementById('resident-submit-text').textContent = 'Simpan Perubahan';
+                
+                // Scroll to form
+                document.getElementById('resident-form').scrollIntoView({ behavior: 'smooth' });
             }
 
             // Populate Resident Checkboxes in Transaction Form
@@ -2262,6 +2421,239 @@
                     
                     checkboxContainer.appendChild(label);
                 });
+            }
+            
+            // Populate Income Categories
+            function populateIncomeCategories() {
+                const container = document.getElementById('income-category-list');
+                if (!container) return;
+                
+                container.innerHTML = '';
+                
+                appData.categories.income.forEach((category, index) => {
+                    const item = document.createElement('div');
+                    item.className = 'flex items-center justify-between bg-gray-50 dark:bg-gray-800 p-2 rounded-lg';
+                    item.innerHTML = `
+                        <span class="text-gray-700 dark:text-gray-300">${category.charAt(0).toUpperCase() + category.slice(1).replace('-income', '')}</span>
+                        <div class="flex items-center space-x-1">
+                            <button class="p-1 text-gray-500 hover:text-primary dark:text-gray-400 dark:hover:text-primary edit-income-category" data-index="${index}">
+                                <i class="ri-edit-line"></i>
+                            </button>
+                            <button class="p-1 text-gray-500 hover:text-red-500 dark:text-gray-400 dark:hover:text-red-400 delete-income-category" data-index="${index}">
+                                <i class="ri-delete-bin-line"></i>
+                            </button>
+                        </div>
+                    `;
+                    
+                    container.appendChild(item);
+                });
+                
+                // Add event listeners for edit and delete buttons
+                document.querySelectorAll('.edit-income-category').forEach(button => {
+                    button.addEventListener('click', function() {
+                        const index = parseInt(this.dataset.index);
+                        editCategory('income', index);
+                    });
+                });
+                
+                document.querySelectorAll('.delete-income-category').forEach(button => {
+                    button.addEventListener('click', function() {
+                        const index = parseInt(this.dataset.index);
+                        showDeleteConfirmation('income-category', index, 'kategori pemasukan');
+                    });
+                });
+            }
+            
+            // Populate Expense Categories
+            function populateExpenseCategories() {
+                const container = document.getElementById('expense-category-list');
+                if (!container) return;
+                
+                container.innerHTML = '';
+                
+                appData.categories.expense.forEach((category, index) => {
+                    const item = document.createElement('div');
+                    item.className = 'flex items-center justify-between bg-gray-50 dark:bg-gray-800 p-2 rounded-lg';
+                    item.innerHTML = `
+                        <span class="text-gray-700 dark:text-gray-300">${category.charAt(0).toUpperCase() + category.slice(1).replace('-expense', '')}</span>
+                        <div class="flex items-center space-x-1">
+                            <button class="p-1 text-gray-500 hover:text-primary dark:text-gray-400 dark:hover:text-primary edit-expense-category" data-index="${index}">
+                                <i class="ri-edit-line"></i>
+                            </button>
+                            <button class="p-1 text-gray-500 hover:text-red-500 dark:text-gray-400 dark:hover:text-red-400 delete-expense-category" data-index="${index}">
+                                <i class="ri-delete-bin-line"></i>
+                            </button>
+                        </div>
+                    `;
+                    
+                    container.appendChild(item);
+                });
+                
+                // Add event listeners for edit and delete buttons
+                document.querySelectorAll('.edit-expense-category').forEach(button => {
+                    button.addEventListener('click', function() {
+                        const index = parseInt(this.dataset.index);
+                        editCategory('expense', index);
+                    });
+                });
+                
+                document.querySelectorAll('.delete-expense-category').forEach(button => {
+                    button.addEventListener('click', function() {
+                        const index = parseInt(this.dataset.index);
+                        showDeleteConfirmation('expense-category', index, 'kategori pengeluaran');
+                    });
+                });
+            }
+
+            // Edit Category Function
+            function editCategory(type, index) {
+                const categoryName = appData.categories[type][index].replace('-income', '').replace('-expense', '');
+                
+                // Set values in the edit category form
+                document.getElementById('edit-category-type').value = type;
+                document.getElementById('edit-category-index').value = index;
+                document.getElementById('edit-category-name').value = categoryName;
+                
+                // Show the edit category modal
+                document.getElementById('edit-category-modal').classList.remove('hidden');
+                document.getElementById('modal-backdrop').classList.remove('hidden');
+            }
+
+            // Delete Confirmation Function
+            function showDeleteConfirmation(type, id, itemName) {
+                // Set values for delete confirmation
+                document.getElementById('delete-type').value = type;
+                document.getElementById('delete-id').value = id;
+                document.getElementById('delete-message').textContent = `Apakah Anda yakin ingin menghapus ${itemName} ini?`;
+                
+                // Show the confirmation modal
+                document.getElementById('confirm-delete-modal').classList.remove('hidden');
+                document.getElementById('modal-backdrop').classList.remove('hidden');
+            }
+
+            // Delete Item Function
+            function deleteItem(type, id) {
+                let success = false;
+                
+                if (type === 'transaction') {
+                    // Delete transaction
+                    const index = appData.transactions.findIndex(t => t.id === parseInt(id));
+                    if (index !== -1) {
+                        appData.transactions.splice(index, 1);
+                        success = true;
+                        
+                        // Update UI
+                        populateAllTransactions();
+                        populateRecentTransactions();
+                    }
+                } else if (type === 'resident') {
+                    // Delete resident
+                    const index = appData.residents.findIndex(r => r.id === id);
+                    if (index !== -1) {
+                        appData.residents.splice(index, 1);
+                        success = true;
+                        
+                        // Update UI
+                        populateAllResidents();
+                        populateResidentDues();
+                        populateResidentCheckboxes();
+                    }
+                } else if (type === 'income-category') {
+                    // Delete income category
+                    const index = parseInt(id);
+                    if (index >= 0 && index < appData.categories.income.length) {
+                        // Check if category is used in any transaction
+                        const categoryName = appData.categories.income[index];
+                        const inUse = appData.transactions.some(t => t.category === categoryName);
+                        
+                        if (inUse) {
+                            showToast('Peringatan', 'Kategori ini sedang digunakan dalam transaksi. Harap ubah transaksi terlebih dahulu.', 'warning');
+                            return false;
+                        }
+                        
+                        appData.categories.income.splice(index, 1);
+                        success = true;
+                        
+                        // Update UI
+                        populateIncomeCategories();
+                        
+                        // Update transaction category dropdown
+                        updateCategoryDropdowns();
+                    }
+                } else if (type === 'expense-category') {
+                    // Delete expense category
+                    const index = parseInt(id);
+                    if (index >= 0 && index < appData.categories.expense.length) {
+                        // Check if category is used in any transaction
+                        const categoryName = appData.categories.expense[index];
+                        const inUse = appData.transactions.some(t => t.category === categoryName);
+                        
+                        if (inUse) {
+                            showToast('Peringatan', 'Kategori ini sedang digunakan dalam transaksi. Harap ubah transaksi terlebih dahulu.', 'warning');
+                            return false;
+                        }
+                        
+                        appData.categories.expense.splice(index, 1);
+                        success = true;
+                        
+                        // Update UI
+                        populateExpenseCategories();
+                        
+                        // Update transaction category dropdown
+                        updateCategoryDropdowns();
+                    }
+                }
+                
+                return success;
+            }
+
+            // Update Category Dropdowns
+            function updateCategoryDropdowns() {
+                const transactionCategory = document.getElementById('transaction-category');
+                if (!transactionCategory) return;
+                
+                // Save current selection if any
+                const currentSelection = transactionCategory.value;
+                
+                // Clear current options
+                const incomeOptgroup = transactionCategory.querySelector('#income-categories');
+                const expenseOptgroup = transactionCategory.querySelector('#expense-categories');
+                
+                if (incomeOptgroup) incomeOptgroup.innerHTML = '';
+                if (expenseOptgroup) expenseOptgroup.innerHTML = '';
+                
+                // Add income categories
+                if (incomeOptgroup) {
+                    appData.categories.income.forEach(category => {
+                        const option = document.createElement('option');
+                        option.value = category;
+                        option.textContent = category.charAt(0).toUpperCase() + category.slice(1).replace('-income', '');
+                        incomeOptgroup.appendChild(option);
+                    });
+                }
+                
+                // Add expense categories
+                if (expenseOptgroup) {
+                    appData.categories.expense.forEach(category => {
+                        const option = document.createElement('option');
+                        option.value = category;
+                        option.textContent = category.charAt(0).toUpperCase() + category.slice(1).replace('-expense', '');
+                        expenseOptgroup.appendChild(option);
+                    });
+                }
+                
+                // Try to restore previous selection
+                if (currentSelection && (appData.categories.income.includes(currentSelection) || appData.categories.expense.includes(currentSelection))) {
+                    transactionCategory.value = currentSelection;
+                } else {
+                    // Default to first option of applicable type
+                    const type = document.querySelector('input[name="transaction-type"]:checked').value;
+                    if (type === 'income' && appData.categories.income.length > 0) {
+                        transactionCategory.value = appData.categories.income[0];
+                    } else if (type === 'expense' && appData.categories.expense.length > 0) {
+                        transactionCategory.value = appData.categories.expense[0];
+                    }
+                }
             }
 
             // Populate Report Transactions
@@ -2396,6 +2788,9 @@
                                     setTimeout(() => {
                                         initReportCharts();
                                     }, 100);
+                                } else if (tabId === 'pengaturan') {
+                                    populateIncomeCategories();
+                                    populateExpenseCategories();
                                 }
                             } else {
                                 content.classList.remove('active');
@@ -2442,6 +2837,9 @@
                                     setTimeout(() => {
                                         initReportCharts();
                                     }, 100);
+                                } else if (tabId === 'pengaturan') {
+                                    populateIncomeCategories();
+                                    populateExpenseCategories();
                                 }
                             } else {
                                 content.classList.remove('active');
@@ -2618,6 +3016,75 @@
                         elements.toast.classList.add('hidden');
                     }, 300);
                 });
+                
+                // Confirm delete button
+                elements.confirmDeleteBtn.addEventListener('click', function() {
+                    const type = document.getElementById('delete-type').value;
+                    const id = document.getElementById('delete-id').value;
+                    
+                    const success = deleteItem(type, id);
+                    
+                    if (success) {
+                        // Show success toast
+                        showToast('Sukses', 'Item berhasil dihapus', 'success');
+                        
+                        // Close modal
+                        closeAllModals();
+                    }
+                });
+                
+                // Edit category form submission
+                document.getElementById('edit-category-form').addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    const type = document.getElementById('edit-category-type').value;
+                    const index = parseInt(document.getElementById('edit-category-index').value);
+                    const newName = document.getElementById('edit-category-name').value;
+                    
+                    if (newName.trim() === '') {
+                        showToast('Error', 'Nama kategori tidak boleh kosong', 'error');
+                        return;
+                    }
+                    
+                    // Check if this name already exists in the categories
+                    let suffix = type === 'income' ? '-income' : '-expense';
+                    let newCategoryName = newName.toLowerCase() + suffix;
+                    
+                    const nameExists = appData.categories[type].some((cat, idx) => idx !== index && cat === newCategoryName);
+                    if (nameExists) {
+                        showToast('Error', 'Nama kategori sudah ada', 'error');
+                        return;
+                    }
+                    
+                    // Get the old category name before updating
+                    const oldCategoryName = appData.categories[type][index];
+                    
+                    // Update the category name
+                    appData.categories[type][index] = newCategoryName;
+                    
+                    // Update any transactions using this category
+                    appData.transactions.forEach(transaction => {
+                        if (transaction.category === oldCategoryName) {
+                            transaction.category = newCategoryName;
+                        }
+                    });
+                    
+                    // Update UI
+                    if (type === 'income') {
+                        populateIncomeCategories();
+                    } else {
+                        populateExpenseCategories();
+                    }
+                    
+                    // Update transaction category dropdown
+                    updateCategoryDropdowns();
+                    
+                    // Close modal
+                    closeAllModals();
+                    
+                    // Show success toast
+                    showToast('Sukses', 'Kategori berhasil diperbarui', 'success');
+                });
             }
 
             function closeAllModals() {
@@ -2625,6 +3092,8 @@
                 elements.userProfileModal.classList.add('hidden');
                 elements.changeUserModal.classList.add('hidden');
                 elements.reminderModal.classList.add('hidden');
+                elements.editCategoryModal.classList.add('hidden');
+                elements.confirmDeleteModal.classList.add('hidden');
             }
 
             // Event listeners for forms
@@ -2781,6 +3250,11 @@
                             }
                         }
                         
+                        // Reset transaction ID and edit mode
+                        document.getElementById('transaction-id').value = '';
+                        appState.editMode.transaction = false;
+                        document.getElementById('transaction-submit-text').textContent = 'Tambah Transaksi';
+                        
                         // Set current date
                         setCurrentDate();
                     });
@@ -2792,6 +3266,10 @@
                         elements.residentForm.reset();
                         document.getElementById('resident-id').value = '';
                         document.getElementById('resident-form-title').textContent = 'Tambah Penghuni';
+                        document.getElementById('resident-submit-text').textContent = 'Tambah Penghuni';
+                        
+                        // Reset edit mode
+                        appState.editMode.resident = false;
                         
                         // Set current date
                         setCurrentDate();
@@ -2803,6 +3281,7 @@
                     elements.transactionForm.addEventListener('submit', function(e) {
                         e.preventDefault();
                         
+                        const id = document.getElementById('transaction-id').value ? parseInt(document.getElementById('transaction-id').value) : null;
                         const type = document.querySelector('input[name="transaction-type"]:checked').value;
                         const date = document.getElementById('transaction-date').value;
                         const amount = document.getElementById('transaction-amount').value;
@@ -2811,18 +3290,40 @@
                         
                         const relatedResidents = Array.from(document.querySelectorAll('input[name="resident-checkbox"]:checked')).map(cb => cb.value);
                         
-                        // In a real app, this would be sent to a server
-                        const newTransaction = {
-                            id: appData.transactions.length + 1,
-                            date,
-                            type,
-                            category,
-                            amount: parseFloat(amount),
-                            description,
-                            relatedResidents
-                        };
-                        
-                        appData.transactions.push(newTransaction);
+                        if (appState.editMode.transaction && id) {
+                            // Update existing transaction
+                            const index = appData.transactions.findIndex(t => t.id === id);
+                            if (index !== -1) {
+                                appData.transactions[index] = {
+                                    id,
+                                    date,
+                                    type,
+                                    category,
+                                    amount: parseFloat(amount),
+                                    description,
+                                    relatedResidents
+                                };
+                                
+                                // Show success toast
+                                showToast('Sukses', 'Transaksi berhasil diperbarui', 'success');
+                            }
+                        } else {
+                            // Add new transaction
+                            const newTransaction = {
+                                id: appData.transactions.length + 1,
+                                date,
+                                type,
+                                category,
+                                amount: parseFloat(amount),
+                                description,
+                                relatedResidents
+                            };
+                            
+                            appData.transactions.push(newTransaction);
+                            
+                            // Show success toast
+                            showToast('Sukses', 'Transaksi berhasil ditambahkan', 'success');
+                        }
                         
                         // Update UI
                         populateAllTransactions();
@@ -2830,9 +3331,6 @@
                         
                         // Reset form
                         elements.resetTransaction.click();
-                        
-                        // Show success toast
-                        showToast('Sukses', 'Transaksi berhasil ditambahkan', 'success');
                     });
                 }
 
@@ -2850,22 +3348,25 @@
                         const dues = document.getElementById('resident-dues').value;
                         const notes = document.getElementById('resident-notes').value;
                         
-                        const isEdit = appData.residents.some(r => r.id === id);
-                        
-                        if (isEdit) {
+                        if (appState.editMode.resident) {
                             // Update existing resident
                             const index = appData.residents.findIndex(r => r.id === id);
-                            appData.residents[index] = {
-                                id,
-                                name,
-                                email,
-                                phone,
-                                room,
-                                joinDate,
-                                dues: parseFloat(dues),
-                                duesPaid: appData.residents[index].duesPaid,
-                                notes
-                            };
+                            if (index !== -1) {
+                                appData.residents[index] = {
+                                    id,
+                                    name,
+                                    email,
+                                    phone,
+                                    room,
+                                    joinDate,
+                                    dues: parseFloat(dues),
+                                    duesPaid: appData.residents[index].duesPaid,
+                                    notes
+                                };
+                                
+                                // Show success toast
+                                showToast('Sukses', 'Data penghuni berhasil diperbarui', 'success');
+                            }
                         } else {
                             // Add new resident
                             const newResident = {
@@ -2881,6 +3382,9 @@
                             };
                             
                             appData.residents.push(newResident);
+                            
+                            // Show success toast
+                            showToast('Sukses', 'Penghuni baru berhasil ditambahkan', 'success');
                         }
                         
                         // Update UI
@@ -2891,8 +3395,8 @@
                         // Reset form
                         elements.resetResident.click();
                         
-                        // Show success toast
-                        showToast('Sukses', isEdit ? 'Data penghuni berhasil diperbarui' : 'Penghuni baru berhasil ditambahkan', 'success');
+                        // Reset edit mode
+                        appState.editMode.resident = false;
                     });
                 }
 
@@ -3048,6 +3552,78 @@
                         populateRecentTransactions();
                     });
                 });
+                
+                // Add Income Category
+                if (elements.addIncomeCategory) {
+                    elements.addIncomeCategory.addEventListener('click', function() {
+                        const newCategoryInput = document.getElementById('new-income-category');
+                        const newCategory = newCategoryInput.value.trim();
+                        
+                        if (newCategory === '') {
+                            showToast('Error', 'Nama kategori tidak boleh kosong', 'error');
+                            return;
+                        }
+                        
+                        // Check if this name already exists in the categories
+                        const newCategoryName = newCategory.toLowerCase() + '-income';
+                        const nameExists = appData.categories.income.includes(newCategoryName);
+                        if (nameExists) {
+                            showToast('Error', 'Nama kategori sudah ada', 'error');
+                            return;
+                        }
+                        
+                        // Add the new category
+                        appData.categories.income.push(newCategoryName);
+                        
+                        // Update UI
+                        populateIncomeCategories();
+                        
+                        // Update transaction category dropdown
+                        updateCategoryDropdowns();
+                        
+                        // Clear input
+                        newCategoryInput.value = '';
+                        
+                        // Show success toast
+                        showToast('Sukses', 'Kategori pemasukan berhasil ditambahkan', 'success');
+                    });
+                }
+                
+                // Add Expense Category
+                if (elements.addExpenseCategory) {
+                    elements.addExpenseCategory.addEventListener('click', function() {
+                        const newCategoryInput = document.getElementById('new-expense-category');
+                        const newCategory = newCategoryInput.value.trim();
+                        
+                        if (newCategory === '') {
+                            showToast('Error', 'Nama kategori tidak boleh kosong', 'error');
+                            return;
+                        }
+                        
+                        // Check if this name already exists in the categories
+                        const newCategoryName = newCategory.toLowerCase() + '-expense';
+                        const nameExists = appData.categories.expense.includes(newCategoryName);
+                        if (nameExists) {
+                            showToast('Error', 'Nama kategori sudah ada', 'error');
+                            return;
+                        }
+                        
+                        // Add the new category
+                        appData.categories.expense.push(newCategoryName);
+                        
+                        // Update UI
+                        populateExpenseCategories();
+                        
+                        // Update transaction category dropdown
+                        updateCategoryDropdowns();
+                        
+                        // Clear input
+                        newCategoryInput.value = '';
+                        
+                        // Show success toast
+                        showToast('Sukses', 'Kategori pengeluaran berhasil ditambahkan', 'success');
+                    });
+                }
             }
 
             // Set current date in forms
@@ -3091,6 +3667,8 @@
                 populateAllResidents();
                 populateResidentCheckboxes();
                 populateReportTransactions();
+                populateIncomeCategories();
+                populateExpenseCategories();
                 
                 setCurrentDate();
 
