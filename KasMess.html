@@ -295,29 +295,12 @@
                     <div class="bg-white dark:bg-darkCard rounded-lg shadow p-4">
                         <div class="flex justify-between items-center mb-4">
                             <h3 class="text-lg font-semibold text-gray-800 dark:text-white">Transaksi Terbaru</h3>
-                            
-                            <!-- Filter dropdown for mobile -->
-                            <div class="relative sm:hidden"></div>
-                                <button id="filter-dropdown-btn" class="px-3 py-1 bg-gray-100 dark:bg-gray-800 rounded-lg flex items-center text-sm text-gray-700 dark:text-gray-300">
-                                    <span id="selected-filter">Semua</span>
-                                    <i class="ri-arrow-down-s-line ml-1"></i>
-                                </button>
-                                <div id="filter-dropdown" class="hidden absolute right-0 mt-2 w-40 bg-white dark:bg-darkCard rounded-lg shadow-lg z-10">
-                                    <button class="filter-tab w-full px-4 py-2 text-left text-sm hover:bg-gray-100 dark:hover:bg-gray-700 active" data-filter="all">Semua</button>
-                                    <button class="filter-tab w-full px-4 py-2 text-left text-sm hover:bg-gray-100 dark:hover:bg-gray-700" data-filter="today">Hari Ini</button>
-                                    <button class="filter-tab w-full px-4 py-2 text-left text-sm hover:bg-gray-100 dark:hover:bg-gray-700" data-filter="month">Bulan Ini</button>
-                                    <button class="filter-tab w-full px-4 py-2 text-left text-sm hover:bg-gray-100 dark:hover:bg-gray-700" data-filter="year">Tahun Ini</button>
-                                </div>
-                            </div>
-
-                            <!-- Regular filter tabs for desktop -->
-                            <div class="hidden sm:flex gap-1 bg-gray-100 dark:bg-gray-800 rounded-lg p-1">
+                            <div class="flex space-x-1 bg-gray-100 dark:bg-gray-800 rounded-lg p-1">
                                 <button class="filter-tab py-1 px-3 text-xs rounded-md active" data-filter="all">Semua</button>
                                 <button class="filter-tab py-1 px-3 text-xs rounded-md" data-filter="today">Hari Ini</button>
                                 <button class="filter-tab py-1 px-3 text-xs rounded-md" data-filter="month">Bulan Ini</button>
                                 <button class="filter-tab py-1 px-3 text-xs rounded-md" data-filter="year">Tahun Ini</button>
                             </div>
-                        </div>
                         </div>
                         <div class="overflow-x-auto">
                             <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
